@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sample Tracker</title>
+  <meta name="description" content="Data entry for the merchandising and technical sample tracker, with dropdown validation built from the existing sheet.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%234f46e5'/><path d='M8 22V10h4l4 8 4-8h4v12h-3v-8l-3.5 7h-2L12 14v8z' fill='white'/></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div>
+        <h1>Sample Tracker</h1>
+        <p class="subtitle">Merchandising &amp; Technical sample log</p>
+      </div>
+      <div class="controls">
+        <button class="btn ghost" id="viewListsBtn">Data validation lists</button>
+        <button class="btn ghost" id="exportBtn">Export CSV</button>
+      </div>
+    </header>
+
+    <form id="entryForm" class="entry-form">
+      <div class="section">
+        <h2 class="section-title merch">Filled by Merchandising Department</h2>
+        <div class="fields" id="merchFields"></div>
+      </div>
+      <div class="section">
+        <h2 class="section-title tech">Filled by Technical Department</h2>
+        <div class="fields" id="techFields"></div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn ghost" id="resetBtn">Clear form</button>
+        <button type="submit" class="btn primary">Add entry</button>
+      </div>
+    </form>
+
+    <section class="table-section">
+      <div class="table-toolbar">
+        <h2>Entries <span id="countBadge" class="badge">0</span></h2>
+        <input type="search" id="searchBox" placeholder="Search all fields…">
+      </div>
+      <div class="table-wrap">
+        <table id="entriesTable">
+          <thead id="tableHead"></thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+      <p id="tableEmpty" class="empty" hidden>No entries yet.</p>
+    </section>
+  </div>
+
+  <dialog id="listsDialog">
+    <div class="dialog-inner">
+      <div class="dialog-head">
+        <h2>Data validation lists</h2>
+        <button type="button" class="btn icon" id="closeListsBtn" aria-label="Close">&times;</button>
+      </div>
+      <p class="dialog-hint">One list per field, built from the values already in the sheet. Add a value here and it appears in that field's dropdown right away.</p>
+      <div id="listsContainer" class="lists-container"></div>
+    </div>
+  </dialog>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
