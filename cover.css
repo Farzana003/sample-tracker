@@ -1,0 +1,147 @@
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-2: #f1f3f9;
+  --text: #1c1f2e;
+  --muted: #6b7185;
+  --border: #e3e6ef;
+  --accent: #4f46e5;
+  --accent-soft: #eef0ff;
+  --merch: #0284c7;
+  --merch-soft: #e6f4fd;
+  --tech: #16a34a;
+  --tech-soft: #e9f9ee;
+  --all: #d97706;
+  --all-soft: #fdf3e3;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1117;
+    --surface: #171a23;
+    --surface-2: #1f2330;
+    --text: #e8eaf2;
+    --muted: #9095a8;
+    --border: #2a2f3d;
+    --accent: #818cf8;
+    --accent-soft: #252a45;
+    --merch: #38bdf8;
+    --merch-soft: #16283a;
+    --tech: #4ade80;
+    --tech-soft: #16301f;
+    --all: #fbbf24;
+    --all-soft: #3a2c11;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.cover {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(24px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+}
+
+.cover-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 28px 26px 24px;
+  box-shadow: 0 20px 50px rgba(20, 20, 40, 0.08);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.brand-icon {
+  font-size: 2.1rem;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  background: var(--accent-soft);
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+.brand h1 { margin: 0; font-size: 1.4rem; font-weight: 700; letter-spacing: -0.01em; }
+.tagline { margin: 2px 0 0; color: var(--muted); font-size: 0.85rem; }
+
+.prompt {
+  margin: 0 0 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.widget { display: flex; flex-direction: column; gap: 10px; }
+
+.option {
+  --tone: var(--accent);
+  --tone-soft: var(--accent-soft);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--tone);
+  border-radius: 12px;
+  padding: 12px 14px;
+  transition: transform 0.12s ease, background 0.12s ease;
+}
+.option[data-tone="merch"] { --tone: var(--merch); --tone-soft: var(--merch-soft); }
+.option[data-tone="tech"] { --tone: var(--tech); --tone-soft: var(--tech-soft); }
+.option[data-tone="all"] { --tone: var(--all); --tone-soft: var(--all-soft); }
+
+.option:hover { background: var(--tone-soft); transform: translateX(2px); }
+.option:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.option-icon {
+  font-size: 1.3rem;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: var(--tone-soft);
+  border-radius: 10px;
+}
+.option-body { display: flex; flex-direction: column; gap: 1px; flex: 1; min-width: 0; }
+.option-title { font-weight: 700; font-size: 0.95rem; }
+.option-desc { font-size: 0.78rem; color: var(--muted); }
+.option-arrow { font-size: 1.4rem; color: var(--muted); flex-shrink: 0; }
+
+.skip-link {
+  display: block;
+  text-align: center;
+  margin-top: 18px;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+.skip-link:hover { color: var(--accent); text-decoration: underline; }
+
+@media (max-width: 420px) {
+  .cover-card { padding: 22px 18px 20px; }
+  .brand-icon { width: 44px; height: 44px; font-size: 1.8rem; }
+}
