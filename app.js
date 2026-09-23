@@ -286,8 +286,22 @@
     URL.revokeObjectURL(url);
   });
 
+  // ---------- deep link from the cover page (?section=merch|tech|all) ----------
+  function handleDeepLink() {
+    const section = new URLSearchParams(location.search).get("section");
+    const targets = { merch: "merchSection", tech: "techSection", all: "tableSection" };
+    const id = targets[section];
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    el.classList.add("deep-link-highlight");
+    setTimeout(() => el.classList.remove("deep-link-highlight"), 2200);
+  }
+
   // ---------- init ----------
   renderFormFields();
   renderTableHead();
   renderTable();
+  handleDeepLink();
 })();
